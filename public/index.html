@@ -36,7 +36,7 @@
     let sessionID = undefined;
 
     async function fetchGameState() {
-      const res = await fetch(`/gamestate?sessionID=${sessionID}`);
+      const res = await fetch(`/gamestate?sessionID=${sessionID}`); 
       const data = await res.json();
       if (res.ok) {
         document.getElementById('gameState').textContent = JSON.stringify(data.gameState, null, 2);
