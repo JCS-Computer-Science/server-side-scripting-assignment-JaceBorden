@@ -42,6 +42,17 @@ server.get('/newgame', (req, res) => {
         res.status(201);
     }
 })
+server.post('/guess', (req, res) => {
+    res.status(201);
+    let guess = req.body.guess
+
+        if(newGame.remainingGuesses != 0 && newGame.gameOver != false) {
+            for (let i = 0; i < 7; i++) {
+                newGame.guesses.push(document.getElementById('guess'))
+                
+            }
+        }
+})
 
 //Do not remove this line. This allows the test suite to start
 //multiple instances of your server on different ports
