@@ -43,15 +43,10 @@ server.get('/newgame', (req, res) => {
     }
 })
 server.post('/guess', (req, res) => {
+    console.log(req)
     res.status(201);
-    let guess = req.body.guess
+    let guess = req.guess;
 
-        if(newGame.remainingGuesses != 0 && newGame.gameOver != false) {
-            for (let i = 0; i < 7; i++) {
-                newGame.guesses.push(document.getElementById('guess'))
-                
-            }
-        }
 })
 
 //Do not remove this line. This allows the test suite to start
