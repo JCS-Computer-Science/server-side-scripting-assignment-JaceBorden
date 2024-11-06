@@ -43,10 +43,32 @@ server.get('/newgame', (req, res) => {
     }
 })
 server.post('/guess', (req, res) => {
-    console.log(req)
+    
     res.status(201);
-    let guess = req.guess;
+    let guess = req.body.guess.toLowerCase()
+   let gameState = activeSessions[req.body.sessionID]
+    
+    gameState.guesses.push(guess)
 
+    if(guess.length == 5){
+        let guessedWordArr = []
+        for (let i = 0; i < 5; i++) {
+            guessedWordArr.push(guess[i])
+        }
+        gameState.remainingGuesses = gameState.remainingGuesses - 1;
+        for (let j = 0; j < 5; j++) {
+            if (guess[j] == gameState.wordToGuess[j]) {
+                gameState.rightLetters.push(guess[j])
+            } else if(guess[j] != gameState.wordToGuess[j] && guess[j] != gameState.wordToGuess[0] && guess[j] != gameState.wordToGuess[1] && guess[j] != gameState.wordToGuess[2] && guess[j] != gameState.wordToGuess[3] && guess[j] != gameState.wordToGuess[4] ){
+                gameState.wrongLetters.push(guess[j])
+            } else {
+                gameState.closeLetters.push(guess[j])
+            }
+            
+        }
+        console.log(gameState);
+        
+    }
 })
 
 //Do not remove this line. This allows the test suite to start
